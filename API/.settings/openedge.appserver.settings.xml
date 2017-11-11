@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<module-content version="11.7">
+<module id="69fb0e24-b3ed-4607-be3b-60abc0e660ab" name="API">
+<resource path="AppServer" publish="true"/>
+</module>
+</module-content>

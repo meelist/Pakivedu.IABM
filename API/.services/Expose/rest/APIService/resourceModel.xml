@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prgs:model xmlns:prgs="http://www.progress.com/caf/camel/component/prgrs" id="resourceModel">
+  <prgs:resource consumes="application/json" name="_Company" path="/Company" produces="application/json">
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..CreateCompany" produces="application/json" verb="POST"/>
+  </prgs:resource>
+</prgs:model>
