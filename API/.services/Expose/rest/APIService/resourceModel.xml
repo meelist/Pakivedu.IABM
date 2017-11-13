@@ -2,5 +2,17 @@
 <prgs:model xmlns:prgs="http://www.progress.com/caf/camel/component/prgrs" id="resourceModel">
   <prgs:resource consumes="application/json" name="_Company" path="/Company" produces="application/json">
     <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..CreateCompany" produces="application/json" verb="POST"/>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..GetCompanies" produces="application/json" verb="GET"/>
+  </prgs:resource>
+  <prgs:resource consumes="application/json" name="_Company_id" path="/Company/{id}" produces="application/json">
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..GetCompany" produces="application/json" verb="GET">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..UpdateCompany" produces="application/json" verb="PUT">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CompanyRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CompanyRepository..DeleteCompany" produces="application/json" verb="DELETE">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
   </prgs:resource>
 </prgs:model>

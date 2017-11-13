@@ -11,6 +11,42 @@
       <pidl:output messageLabel="success" req="false" type="java:Boolean">
     </pidl:output>
     </pidl:operation>
+    <pidl:operation name="CompanyRepository..DeleteCompany" pattern="http://www.progress.com/caf/idl1.0/request-response">
+      <pidl:input messageLabel="companyId" req="false" type="java:Integer">
+    </pidl:input>
+      <pidl:output messageLabel="successMessage" req="false" type="java:String">
+    </pidl:output>
+      <pidl:output messageLabel="success" req="false" type="java:Boolean">
+    </pidl:output>
+    </pidl:operation>
+    <pidl:operation name="CompanyRepository..GetCompanies" pattern="http://www.progress.com/caf/idl1.0/request-response">
+      <pidl:output messageLabel="getCompany" req="false" type="java:Object">
+    </pidl:output>
+      <pidl:output messageLabel="successMessage" req="false" type="java:String">
+    </pidl:output>
+      <pidl:output messageLabel="success" req="false" type="java:Boolean">
+    </pidl:output>
+    </pidl:operation>
+    <pidl:operation name="CompanyRepository..GetCompany" pattern="http://www.progress.com/caf/idl1.0/request-response">
+      <pidl:input messageLabel="companyId" req="false" type="java:Integer">
+    </pidl:input>
+      <pidl:output messageLabel="getCompany" req="false" type="java:Object">
+    </pidl:output>
+      <pidl:output messageLabel="successMessage" req="false" type="java:String">
+    </pidl:output>
+      <pidl:output messageLabel="success" req="false" type="java:Boolean">
+    </pidl:output>
+    </pidl:operation>
+    <pidl:operation name="CompanyRepository..UpdateCompany" pattern="http://www.progress.com/caf/idl1.0/request-response">
+      <pidl:input messageLabel="companyId" req="false" type="java:Integer">
+    </pidl:input>
+      <pidl:input messageLabel="companySet" req="false" type="java:Object">
+    </pidl:input>
+      <pidl:output messageLabel="successMessage" req="false" type="java:String">
+    </pidl:output>
+      <pidl:output messageLabel="success" req="false" type="java:Boolean">
+    </pidl:output>
+    </pidl:operation>
   </pidl:interface>
   <pidl:binding name="com.progress.openedge.pdt.bpmbindings" interface="wsad:com.progress.openedge.pdt.bpminterfaces" type="urn:schemas-progress-com:bpm:appserverbinding:0001">
 <wsad:Operation isPersistent="false" useFullName="false" executionMode="11">
@@ -39,6 +75,124 @@
           <wsad:Mode>2</wsad:Mode>
         </wsad:Parameter>
         <wsad:Parameter allowUnknown="true" ordinal="3" writeXmlBeforeImage="false">
+          <wsad:Name>success</wsad:Name>
+          <wsad:OrigName>success</wsad:OrigName>
+          <wsad:Type>3</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+      </wsad:MethodDetail>
+    </wsad:InternalProc>
+    <wsad:InternalProc isExcluded="false" hasBadParams="false">
+      <wsad:Name>DeleteCompany</wsad:Name>
+      <wsad:ProcType>1</wsad:ProcType>
+      <wsad:MethodDetail isCustomized="false" usesUnknownDefault="true" useRetVal="false" usesTTMappingDefault="true" IsTTResultSet="true" usesBeforeImageDefault="false" IsMappedToSubmit="false">
+        <wsad:Name>DeleteCompany</wsad:Name>
+        <wsad:Parameter allowUnknown="true" ordinal="1" writeXmlBeforeImage="false">
+          <wsad:Name>companyId</wsad:Name>
+          <wsad:OrigName>companyId</wsad:OrigName>
+          <wsad:Type>4</wsad:Type>
+          <wsad:Mode>1</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="2" writeXmlBeforeImage="false">
+          <wsad:Name>successMessage</wsad:Name>
+          <wsad:OrigName>successMessage</wsad:OrigName>
+          <wsad:Type>1</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="3" writeXmlBeforeImage="false">
+          <wsad:Name>success</wsad:Name>
+          <wsad:OrigName>success</wsad:OrigName>
+          <wsad:Type>3</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+      </wsad:MethodDetail>
+    </wsad:InternalProc>
+    <wsad:InternalProc isExcluded="false" hasBadParams="false">
+      <wsad:Name>GetCompanies</wsad:Name>
+      <wsad:ProcType>1</wsad:ProcType>
+      <wsad:MethodDetail isCustomized="false" usesUnknownDefault="true" useRetVal="false" usesTTMappingDefault="true" IsTTResultSet="true" usesBeforeImageDefault="false" IsMappedToSubmit="false">
+        <wsad:Name>GetCompanies</wsad:Name>
+        <wsad:Parameter allowUnknown="true" ordinal="1" writeXmlBeforeImage="false">
+          <wsad:Name>getCompany</wsad:Name>
+          <wsad:OrigName>getCompany</wsad:OrigName>
+          <wsad:Type>15</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+          <wsad:NamespaceUri xsi:nil="true"/>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="2" writeXmlBeforeImage="false">
+          <wsad:Name>successMessage</wsad:Name>
+          <wsad:OrigName>successMessage</wsad:OrigName>
+          <wsad:Type>1</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="3" writeXmlBeforeImage="false">
+          <wsad:Name>success</wsad:Name>
+          <wsad:OrigName>success</wsad:OrigName>
+          <wsad:Type>3</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+      </wsad:MethodDetail>
+    </wsad:InternalProc>
+    <wsad:InternalProc isExcluded="false" hasBadParams="false">
+      <wsad:Name>GetCompany</wsad:Name>
+      <wsad:ProcType>1</wsad:ProcType>
+      <wsad:MethodDetail isCustomized="false" usesUnknownDefault="true" useRetVal="false" usesTTMappingDefault="true" IsTTResultSet="true" usesBeforeImageDefault="false" IsMappedToSubmit="false">
+        <wsad:Name>GetCompany</wsad:Name>
+        <wsad:Parameter allowUnknown="true" ordinal="1" writeXmlBeforeImage="false">
+          <wsad:Name>companyId</wsad:Name>
+          <wsad:OrigName>companyId</wsad:OrigName>
+          <wsad:Type>4</wsad:Type>
+          <wsad:Mode>1</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="2" writeXmlBeforeImage="false">
+          <wsad:Name>getCompany</wsad:Name>
+          <wsad:OrigName>getCompany</wsad:OrigName>
+          <wsad:Type>15</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+          <wsad:NamespaceUri xsi:nil="true"/>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="3" writeXmlBeforeImage="false">
+          <wsad:Name>successMessage</wsad:Name>
+          <wsad:OrigName>successMessage</wsad:OrigName>
+          <wsad:Type>1</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="4" writeXmlBeforeImage="false">
+          <wsad:Name>success</wsad:Name>
+          <wsad:OrigName>success</wsad:OrigName>
+          <wsad:Type>3</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+      </wsad:MethodDetail>
+    </wsad:InternalProc>
+    <wsad:InternalProc isExcluded="false" hasBadParams="false">
+      <wsad:Name>UpdateCompany</wsad:Name>
+      <wsad:ProcType>1</wsad:ProcType>
+      <wsad:MethodDetail isCustomized="false" usesUnknownDefault="true" useRetVal="false" usesTTMappingDefault="true" IsTTResultSet="true" usesBeforeImageDefault="false" IsMappedToSubmit="false">
+        <wsad:Name>UpdateCompany</wsad:Name>
+        <wsad:Parameter allowUnknown="true" ordinal="1" writeXmlBeforeImage="false">
+          <wsad:Name>companyId</wsad:Name>
+          <wsad:OrigName>companyId</wsad:OrigName>
+          <wsad:Type>4</wsad:Type>
+          <wsad:Mode>1</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="2" writeXmlBeforeImage="false">
+          <wsad:Name>companySet</wsad:Name>
+          <wsad:OrigName>companySet</wsad:OrigName>
+          <wsad:Type>36</wsad:Type>
+          <wsad:Mode>1</wsad:Mode>
+          <wsad:DataSetMetaData>
+            <wsad:NamespaceUri xsi:nil="true"/>
+            <wsad:DataTable Name="updateCompany" hasBeforeTable="false"/>
+          </wsad:DataSetMetaData>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="3" writeXmlBeforeImage="false">
+          <wsad:Name>successMessage</wsad:Name>
+          <wsad:OrigName>successMessage</wsad:OrigName>
+          <wsad:Type>1</wsad:Type>
+          <wsad:Mode>2</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="4" writeXmlBeforeImage="false">
           <wsad:Name>success</wsad:Name>
           <wsad:OrigName>success</wsad:OrigName>
           <wsad:Type>3</wsad:Type>
