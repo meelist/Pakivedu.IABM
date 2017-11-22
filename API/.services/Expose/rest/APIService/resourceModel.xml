@@ -15,4 +15,19 @@
       <prgs:param name="id" type="PATH"/>
     </prgs:operation>
   </prgs:resource>
+  <prgs:resource consumes="application/json" name="_Customer_id" path="/Customer/{id}" produces="application/json">
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..GetCustomer" produces="application/json" verb="GET">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..UpdateCustomer" produces="application/json" verb="PUT">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..DeleteCustomer" produces="application/json" verb="DELETE">
+      <prgs:param name="id" type="PATH"/>
+    </prgs:operation>
+  </prgs:resource>
+  <prgs:resource consumes="application/json" name="_Customer" path="/Customer" produces="application/json">
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..GetCustomers" produces="application/json" verb="GET"/>
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..CreateCustomer" produces="application/json" verb="POST"/>
+  </prgs:resource>
 </prgs:model>

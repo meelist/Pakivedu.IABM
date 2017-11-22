@@ -1,14 +1,14 @@
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
  
- /*------------------------------------------------------------------------
-    File        : Company
-    Purpose     : 
-    Syntax      : 
-    Description : 
-    Author(s)   : Meelis
-    Created     : Fri Nov 10 15:45:23 EET 2017
-    Notes       : 
-  ----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------
+   File        : Company
+   Purpose     : 
+   Syntax      : 
+   Description : 
+   Author(s)   : Meelis
+   Created     : Fri Nov 10 15:45:23 EET 2017
+   Notes       : 
+ ----------------------------------------------------------------------*/
 
 USING Progress.Lang.*.
 
@@ -33,8 +33,9 @@ CLASS CompanyRepository:
         
         CREATE addCompany.
         
-        ASSIGN addCompany.Name = companyName
-        addCompany.COMPANYKEY = GetNewId().
+        ASSIGN 
+            addCompany.Name       = companyName
+            addCompany.COMPANYKEY = GetNewId().
         
         BUFFER-COPY addCompany TO COMPANY.
         
@@ -55,7 +56,7 @@ CLASS CompanyRepository:
         
         IF AVAILABLE COMPANY THEN
         DO:         
-            DELETE company.
+            DELETE COMPANY.
             successMessage = "Record deleted!".
             success = TRUE.            
         END.
@@ -154,7 +155,7 @@ CLASS CompanyRepository:
         FIND FIRST COMPANY WHERE COMPANY.COMPANYKEY EQ companyId EXCLUSIVE-LOCK NO-ERROR.
         
         ASSIGN 
-        updateCompany.COMPANYKEY = companyId.
+            updateCompany.COMPANYKEY = companyId.
         
         IF AVAILABLE COMPANY THEN
         DO:
