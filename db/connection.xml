@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="schema/databaseConnection.xsd">
+<databaseconnection identifier="pakiveduDefault">
+<name>pakiveduDefault</name>
+<description/>
+<physicalname>db\pakivedu.db</physicalname>
+<logicalname/>
+<aliases/>
+<group/>
+<host>localhost</host>
+<service>3000</service>
+<userID/>
+<password/>
+<connectionparameters/>
+<SQLIdentifier>78c63d95:15fad028f0e:-5dae</SQLIdentifier>
+<autoStartServer>true</autoStartServer>
+<serverParameters>-db db\pakivedu.db -S 3000   </serverParameters>
+<autoShutdownServer>true</autoShutdownServer>
+<OEVersion>11.7</OEVersion>
+<SQLAlias>
+<autoLogon>true</autoLogon>
+<connectAtStartup>false</connectAtStartup>
+<driverIdentifier>-27</driverIdentifier>
+<SQLAliasIdentifier>78c63d95:15fad028f0e:-5dae</SQLAliasIdentifier>
+<SQLAliasName>pakiveduDefault</SQLAliasName>
+<SQLAliasPassword/>
+<url>jdbc:datadirect:openedge://localhost:3000;databaseName=pakivedu.db</url>
+<useDriverProperties>false</useDriverProperties>
+<userName>Meelis</userName>
+</SQLAlias>
+</databaseconnection>
+</root>
