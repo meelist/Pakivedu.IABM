@@ -32,8 +32,8 @@
   &lt;mapping:mapFault name=&quot;default_fault&quot;/>&#xD;
 &lt;/mapping:messageMapping></lm:properties>
             <lm:properties name="_Company::CompanyRepository..GetCompanies::GET">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>&#xD;
-&lt;mapping:messageMapping xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:mapping=&quot;http://www.progress.com/caf/mapping1.0&quot; xmlns:metadata=&quot;http://www.progress.com/caf/mapping1.0/toolingMetadata&quot;>&#xD;
-  &lt;metadata:toolingMetadata xsi:type=&quot;metadata:toolingMetadata&quot;>&#xD;
+&lt;mapping:messageMapping xmlns:mapping=&quot;http://www.progress.com/caf/mapping1.0&quot; xmlns:metadata=&quot;http://www.progress.com/caf/mapping1.0/toolingMetadata&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;>&#xD;
+  &lt;metadata:toolingMetadata>&#xD;
     &lt;metadata:mapInput>&#xD;
       &lt;metadata:source/>&#xD;
       &lt;metadata:target/>&#xD;

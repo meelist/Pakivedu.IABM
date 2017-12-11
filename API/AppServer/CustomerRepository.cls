@@ -42,7 +42,7 @@ CLASS CustomerRepository:
             addCustomer.PASSWORD      = password
             addCustomer.ZIPCODE       = zipcode
             addCustomer.COUNTRY       = country
-            addCustomer.FK_COMPANYKEY = companyId
+            //addCustomer.FK_COMPANYKEY = companyId
             addCustomer.CUSTOMERKEY   = GetNewId().
         
         BUFFER-COPY addCustomer TO CUSTOMER.
