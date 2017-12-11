@@ -18,7 +18,7 @@
     </pidl:input>
       <pidl:input messageLabel="country" req="false" type="java:String">
     </pidl:input>
-      <pidl:input messageLabel="companyId" req="false" type="java:Integer">
+      <pidl:input messageLabel="companyKey" req="false" type="java:Integer">
     </pidl:input>
       <pidl:output messageLabel="successMessage" req="false" type="java:String">
     </pidl:output>
@@ -119,8 +119,8 @@
           <wsad:Mode>1</wsad:Mode>
         </wsad:Parameter>
         <wsad:Parameter allowUnknown="true" ordinal="8" writeXmlBeforeImage="false">
-          <wsad:Name>companyId</wsad:Name>
-          <wsad:OrigName>companyId</wsad:OrigName>
+          <wsad:Name>companyKey</wsad:Name>
+          <wsad:OrigName>companyKey</wsad:OrigName>
           <wsad:Type>4</wsad:Type>
           <wsad:Mode>1</wsad:Mode>
         </wsad:Parameter>

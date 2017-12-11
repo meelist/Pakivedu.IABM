@@ -16,9 +16,9 @@ BLOCK-LEVEL ON ERROR UNDO, THROW.
 
 CLASS CustomerRepository: 
     
-    DEFINE TEMP-TABLE addCustomer LIKE CUSTOMER.
-    DEFINE TEMP-TABLE getCustomer LIKE CUSTOMER.
-    DEFINE TEMP-TABLE updateCustomer LIKE CUSTOMER.
+    DEFINE TEMP-TABLE addCustomer LIKE Customer.
+    DEFINE TEMP-TABLE getCustomer LIKE Customer.
+    DEFINE TEMP-TABLE updateCustomer LIKE Customer.
     
     DEFINE DATASET customerSet FOR updateCustomer.
 
@@ -30,25 +30,34 @@ CLASS CustomerRepository:
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
     METHOD PUBLIC VOID CreateCustomer( INPUT customerName AS CHARACTER, INPUT telephone AS CHARACTER, INPUT address AS CHARACTER,
         INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
-        INPUT country AS CHARACTER, INPUT companyId AS INTEGER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
+        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
         CREATE addCustomer.
         
-        ASSIGN 
-            addCustomer.NAME          = customerName
-            addCustomer.TELEPHONE     = telephone
-            addCustomer.ADDRESS       = address
-            addCustomer.EMAIL         = email
-            addCustomer.PASSWORD      = password
-            addCustomer.ZIPCODE       = zipcode
-            addCustomer.COUNTRY       = country
-            //addCustomer.FK_COMPANYKEY = companyId
-            addCustomer.CUSTOMERKEY   = GetNewId().
+        FIND Company WHERE Company.CompanyKey = companyKey NO-ERROR.
+        IF NOT AVAILABLE Company THEN 
+        DO:
+            successMessage = "Company with Key " + STRING(companyKey) + " was not found!".
+            success = FALSE.
+        END.
+        ELSE 
+        DO:
+            ASSIGN 
+                addCustomer.NAME        = customerName
+                addCustomer.TELEPHONE   = telephone
+                addCustomer.ADDRESS     = address
+                addCustomer.EMAIL       = email
+                addCustomer.PASSWORD    = password
+                addCustomer.ZIPCODE     = zipcode
+                addCustomer.COUNTRY     = country
+                addCustomer.COMPANYKEY  = companyKey
+                addCustomer.CUSTOMERKEY = GetNewId().
         
-        BUFFER-COPY addCustomer TO CUSTOMER.
+            BUFFER-COPY addCustomer TO CUSTOMER.
         
-        successMessage = "Record created!".
-        success = TRUE.
+            successMessage = "Record created!".
+            success = TRUE.
+        END.
         
     END METHOD. 
     

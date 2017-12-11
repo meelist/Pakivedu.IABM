@@ -1,10 +1,10 @@
---INSERT INTO Company (CompanyKey, Name)
+--INSERT INTO "PUB"."COMPANY" (CompanyKey, Name)
 --VALUES (0, 'Tallink')
 
---SELECT * FROM Company
+SELECT * FROM "PUB"."COMPANY
 
- CREATE TABLE "PUB"."COMPANY"
-          (
-          CompanyKey  INTEGER NOT NULL PRIMARY KEY,
-          Name  VARCHAR (250)
-          ) ;
+ --CREATE TABLE "PUB"."COMPANY"
+ --         (
+ --         CompanyKey  INTEGER NOT NULL PRIMARY KEY,
+ --         Name  VARCHAR (250)
+ --         ) ;

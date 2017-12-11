@@ -84,8 +84,21 @@ ADD FIELD "Country" OF "Customer" AS character
   MAX-WIDTH 16
   ORDER 80
 
+ADD FIELD "CompanyKey" OF "Customer" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 4
+  ORDER 90
+
+ADD INDEX "CustomerKeyIndex" ON "Customer" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "CustomerKey" ASCENDING 
+
 .
 PSC
 cpstream=ISO8859-1
 .
-0000001542
+0000001804
