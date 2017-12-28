@@ -216,6 +216,10 @@
     <Content Include="Views\Home\ManageProfile.cshtml" />
     <Content Include="Views\Order\Sender.cshtml" />
     <Content Include="Views\Order\_UserLayout.cshtml" />
+    <Content Include="Views\Order\Receiver.cshtml" />
+    <Content Include="Views\Order\Package.cshtml" />
+    <Content Include="Views\Order\Summary.cshtml" />
+    <Content Include="Views\Order\Process.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

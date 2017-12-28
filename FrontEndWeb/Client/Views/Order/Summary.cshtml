@@ -1,0 +1,19 @@
+﻿@model dynamic
+
+@{
+   ViewBag.Title = "title";
+   Layout = "_UserLayout.cshtml";
+}
+
+<div class="container">
+   <h2 class="form-signin-heading">Tellimuse andmed</h2>
+   <h4>Tarne liik: Tava teenus</h4>
+   <h4>Kaubaühikute arv: 1</h4>
+   <h4>Saadetise kogukaal kilogrammides: 4,5</h4>
+   <h4>Summa: 6 EURi</h4>
+
+   <button class="btn btn-lg btn-primary btn-block" type="button" onclick="window.location.href = '@Url.Action("Process", "Order")'">Kinnita</button>
+   <button class="btn btn-lg btn-default btn-block" type="button" onclick="window.location.href = '@Url.Action("Package", "Order")'">Tagasi</button>
+   <button class="btn btn-lg btn-default btn-block" type="button" onclick="window.location.href = '@Url.Action("Index", "Home")'">Katkesta</button>
+
+</div>

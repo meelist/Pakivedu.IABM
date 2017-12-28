@@ -27,5 +27,10 @@ namespace Client.Controllers
     {
       return View();
     }
+
+    public ActionResult Process()
+    {
+      return View();
+    }
   }
 }
