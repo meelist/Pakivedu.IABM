@@ -7,14 +7,14 @@
 <head>
    <meta charset="utf-8" />
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>@ViewBag.Title - My ASP.NET Application</title>
+   <title>Superkuller</title>
    @Styles.Render("~/Content/css")
    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
 <div class="container">
 
-   <form class="form-signin" action="Index">
+   <form class="form-signin" action="~/Home/Index">
       <h2 class="form-signin-heading">Palun logi sisse</h2>
       <label for="inputUsername" class="sr-only">Kasutajatunnus</label>
       <input type="text" id="inputUsername" class="form-control" placeholder="Kasutajatunnus" required="" autofocus="">
@@ -26,9 +26,8 @@
          </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
+      <button class="btn btn-lg btn-default btn-block" type="button" onclick="window.location.href='@Url.Action("Register", "Home" )'">Loo kasutaja</button>
    </form>
-   <button class="btn-default">REGISTREERU KASUTAJAKS</button>
 </div>
-<!-- <button class="btn-default">@Html.ActionLink("Logi sisse", "Index", "Home")</button> -->
 </body>
 </html>
