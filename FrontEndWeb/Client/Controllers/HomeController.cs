@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Client.Models;
 
 namespace Client.Controllers
 {
   public class HomeController : Controller
   {
-    public ActionResult Index()
+    public ActionResult Index(LoginModel model)
     {
+      var x = ModelState.Values;
       return View();
     }
 
-    public ActionResult Login()
+    public ActionResult Login(LoginModel model)
     {
-      return View();
+      return View(model);
     }
 
     public ActionResult Register()

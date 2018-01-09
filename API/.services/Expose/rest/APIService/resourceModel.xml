@@ -30,4 +30,7 @@
     <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..GetCustomers" produces="application/json" verb="GET"/>
     <prgs:operation consumes="application/json" idls="API/.services/AppServer/CustomerRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="CustomerRepository..CreateCustomer" produces="application/json" verb="POST"/>
   </prgs:resource>
+  <prgs:resource consumes="application/json" name="_Auth" path="/Auth" produces="application/json">
+    <prgs:operation consumes="application/json" idls="API/.services/AppServer/AuthRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="AuthRepository..Login" produces="application/json" verb="POST"/>
+  </prgs:resource>
 </prgs:model>

@@ -1,7 +1,7 @@
 ﻿@{
    Layout = null;
 }
-
+@model Client.Models.LoginModel
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,13 +13,12 @@
 </head>
 <body>
 <div class="container">
-
    <form class="form-signin" action="~/Home/Index">
       <h2 class="form-signin-heading">Palun logi sisse</h2>
       <label for="inputUsername" class="sr-only">Kasutajatunnus</label>
-      <input type="text" id="inputUsername" class="form-control" placeholder="Kasutajatunnus" required="" autofocus="">
+      <input asp-for="@Model.UserName" type="text" id="inputUsername" class="form-control" placeholder="Kasutajatunnus" required="" autofocus="">
       <label for="inputPassword" class="sr-only">Parool</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Parool" required="">
+      <input asp-for="@Model.Password" type="password" id="inputPassword" class="form-control" placeholder="Parool" required="">
       <div class="checkbox">
          <label>
             <input type="checkbox" value="remember-me"> Remember me

@@ -30,7 +30,7 @@ CLASS CustomerRepository:
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
     METHOD PUBLIC VOID CreateCustomer( INPUT customerName AS CHARACTER, INPUT telephone AS CHARACTER, INPUT address AS CHARACTER,
         INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
-        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
+        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, INPUT userName AS CHARACTER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
         CREATE addCustomer.
         
@@ -40,10 +40,10 @@ CLASS CustomerRepository:
             successMessage = "Company with Key " + STRING(companyKey) + " was not found!".
             success = FALSE.
         END.
-        ELSE 
+        ELSE
         DO:
-            ASSIGN 
-                addCustomer.NAME        = customerName
+            ASSIGN
+                addCustomer.FULLNAME    = customerName
                 addCustomer.TELEPHONE   = telephone
                 addCustomer.ADDRESS     = address
                 addCustomer.EMAIL       = email
@@ -51,6 +51,7 @@ CLASS CustomerRepository:
                 addCustomer.ZIPCODE     = zipcode
                 addCustomer.COUNTRY     = country
                 addCustomer.COMPANYKEY  = companyKey
+                addCustomer.USERNAME    = userName
                 addCustomer.CUSTOMERKEY = GetNewId().
         
             BUFFER-COPY addCustomer TO CUSTOMER.

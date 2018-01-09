@@ -20,6 +20,8 @@
     </pidl:input>
       <pidl:input messageLabel="companyKey" req="false" type="java:Integer">
     </pidl:input>
+      <pidl:input messageLabel="userName" req="false" type="java:String">
+    </pidl:input>
       <pidl:output messageLabel="successMessage" req="false" type="java:String">
     </pidl:output>
       <pidl:output messageLabel="success" req="false" type="java:Boolean">
@@ -125,12 +127,18 @@
           <wsad:Mode>1</wsad:Mode>
         </wsad:Parameter>
         <wsad:Parameter allowUnknown="true" ordinal="9" writeXmlBeforeImage="false">
+          <wsad:Name>userName</wsad:Name>
+          <wsad:OrigName>userName</wsad:OrigName>
+          <wsad:Type>1</wsad:Type>
+          <wsad:Mode>1</wsad:Mode>
+        </wsad:Parameter>
+        <wsad:Parameter allowUnknown="true" ordinal="10" writeXmlBeforeImage="false">
           <wsad:Name>successMessage</wsad:Name>
           <wsad:OrigName>successMessage</wsad:OrigName>
           <wsad:Type>1</wsad:Type>
           <wsad:Mode>2</wsad:Mode>
         </wsad:Parameter>
-        <wsad:Parameter allowUnknown="true" ordinal="10" writeXmlBeforeImage="false">
+        <wsad:Parameter allowUnknown="true" ordinal="11" writeXmlBeforeImage="false">
           <wsad:Name>success</wsad:Name>
           <wsad:OrigName>success</wsad:OrigName>
           <wsad:Type>3</wsad:Type>
