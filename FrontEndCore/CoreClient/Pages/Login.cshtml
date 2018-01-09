@@ -1,0 +1,22 @@
+﻿@page
+@model LoginModel
+@{
+   ViewData["Title"] = "Login";
+}
+
+
+<div class="container">
+   <div asp-validation-summary="All"></div>
+   <form method="post" class="form-signin">
+      <h2 class="form-signin-heading">Login</h2>
+      <div>
+         <label class="sr-only">Kasutajatunnus</label>
+         <input asp-for="UserName" class="form-control" placeholder="Kasutajatunnus"/>
+      </div>
+      <div>
+         <label class="sr-only">Parool</label>
+         <input asp-for="Password" class="form-control" placeholder="Parool"/>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
+   </form>
+</div>

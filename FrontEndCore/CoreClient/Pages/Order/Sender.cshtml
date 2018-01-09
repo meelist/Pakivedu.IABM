@@ -1,0 +1,33 @@
+﻿@page
+@model Order.SenderModel
+@{
+    ViewData["Title"] = "Sender";
+}
+
+<div class="container">
+   <div asp-validation-summary="All"></div>
+   <form method="post" class="form-signin">
+      <h2 class="form-signin-heading">Sisesta saatja andmed</h2>
+
+      <label class="sr-only">Ettevõte</label>
+      <input asp-for="Sender.CompanyKey" type="text" class="form-control" placeholder="Ettevõte" autofocus="">
+
+      <label class="sr-only">Kontaktisik</label>
+      <input asp-for="Sender.CustomerName" type="text" class="form-control" placeholder="Kontaktisik">
+
+      <label class="sr-only">Telefoninumber</label>
+      <input asp-for="Sender.Telephone" type="text" class="form-control" placeholder="Telefoninumber">
+
+      <label class="sr-only">Aadress</label>
+      <input asp-for="Sender.Address" type="text" class="form-control" placeholder="Aadress">
+
+      <label class="sr-only">Postiindeks</label>
+      <input asp-for="Sender.ZipCode" type="text" class="form-control" placeholder="Postiindeks">
+
+      <label class="sr-only">Riik</label>
+      <input asp-for="Sender.Country" type="text" class="form-control" placeholder="Riik">
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Edasi</button>
+      <a asp-page="/Index" class="btn btn-lg btn-default btn-block">Katkesta</a>
+   </form>
+</div>
