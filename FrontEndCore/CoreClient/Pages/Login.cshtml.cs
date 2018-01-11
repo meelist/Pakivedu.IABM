@@ -27,12 +27,12 @@ namespace CoreClient.Pages
       {
         client.BaseAddress = new Uri("http://localhost:8980/");
 
-        dynamic req = new JObject();
-        req.request = new JObject();
-        req.request.userName = UserName;
-        req.request.passWord = Password;
+        dynamic json = new JObject();
+        json.request = new JObject();
+        json.request.userName = UserName;
+        json.request.passWord = Password;
 
-        var content = new StringContent(req.ToString(), Encoding.UTF8, "application/json");
+        var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
         var response = await client.PostAsync("APIService/rest/APIService/Auth", content);
         if (!response.IsSuccessStatusCode)
         {

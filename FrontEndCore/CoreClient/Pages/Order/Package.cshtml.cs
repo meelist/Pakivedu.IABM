@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CoreClient.Extensions;
 using CoreClient.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -9,27 +10,16 @@ namespace CoreClient.Pages.Order
   public class PackageModel : PageModel
   {
     [BindProperty]
-    public Customer Sender { get; set; }
-    [BindProperty]
-    public Customer Receiver { get; set; }
-    [BindProperty]
     public PackageInfo PackageInfo { get; set; }
 
     public void OnGet()
     {
-      Sender = JsonConvert.DeserializeObject<Customer>(TempData["Sender"] as string);
-      Receiver = JsonConvert.DeserializeObject<Customer>(TempData["Receiver"] as string);
-      PackageInfo = new PackageInfo();
+      PackageInfo = TempData.GetWithKeep<PackageInfo>("PackageInfo") ?? new PackageInfo();
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
-      var senderJson = JsonConvert.SerializeObject(Sender);
-      TempData["Sender"] = senderJson;
-      var receiverJson = JsonConvert.SerializeObject(Receiver);
-      TempData["Receiver"] = receiverJson;
-      var packageInfoJson = JsonConvert.SerializeObject(PackageInfo);
-      TempData["PackageInfo"] = packageInfoJson;
+      TempData.Put("PackageInfo", PackageInfo);
       return RedirectToPage("/Order/Summary");
     }
   }
