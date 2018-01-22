@@ -1,3 +1,4 @@
+@openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
  
  /*------------------------------------------------------------------------
     File        : Customers

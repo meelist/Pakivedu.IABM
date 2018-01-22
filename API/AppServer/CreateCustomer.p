@@ -1,3 +1,4 @@
+@openapi.openedge.export FILE(type="REST", executionMode="external", useReturnValue="false", writeDataSetBeforeImage="false").
 
 /*------------------------------------------------------------------------
     File        : CreateCustomer.p

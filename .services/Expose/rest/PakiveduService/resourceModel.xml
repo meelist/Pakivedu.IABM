@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prgs:model xmlns:prgs="http://www.progress.com/caf/camel/component/prgrs" id="resourceModel">
+  <prgs:resource consumes="application/json" name="_Customer" path="/Customer" produces="application/json"/>
+  <prgs:resource consumes="application/json" name="_Company" path="/Company" produces="application/json"/>
+  <prgs:resource consumes="application/json" name="_Login" path="/Login" produces="application/json">
+    <prgs:operation consumes="application/x-www-form-urlencoded" idls="Pakivedu/.services/API/AppServer/AuthRepository.pidl::com.progress.openedge.pdt.bpmbindings" name="AuthRepository..Login" produces="application/json" verb="POST">
+      <prgs:param name="userName" type="FORM"/>
+      <prgs:param name="password" type="FORM"/>
+    </prgs:operation>
+  </prgs:resource>
+</prgs:model>

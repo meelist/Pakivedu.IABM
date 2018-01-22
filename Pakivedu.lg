@@ -1,0 +1,23 @@
+
+                Mon Jan  1 21:56:28 2018
+[2018/01/01@21:56:28.757+0200] P-12428      T-3312  I DBUTIL   : (451)   prostrct create session begin for margop on CON:. 
+[2018/01/01@21:56:28.760+0200] P-12428      T-3312  I DBUTIL   : (12862) Structure file Pakivedu.st used to create database with blocksize 4096. 
+[2018/01/01@21:56:28.773+0200] P-12428      T-3312  I DBUTIL   : (334)   prostrct create session end. 
+[2018/01/01@21:56:28.784+0200] P-12428      T-3312  I DBUTIL   : (451)   procopy session begin for margop on CON:. 
+[2018/01/01@21:56:28.815+0200] P-12428      T-3312  I DBUTIL   : (334)   procopy session end. 
+
+                Mon Jan  1 21:56:28 2018
+[2018/01/01@21:56:28.828+0200] P-12428      T-3312  I          : (451)   procopy get default SQL DBA session begin for margop on CON:. 
+[2018/01/01@21:56:28.831+0200] P-12428      T-3312  I          : (15321) Before Image Log Initialization at block 0  offset 0. 
+[2018/01/01@21:56:28.880+0200] P-12428      T-3312  I          : (14867) Procopy -newinstance Created a new database GUID. 
+[2018/01/01@21:56:28.882+0200] P-12428      T-3312  I          : (15109) At Database close the number of live transactions is 0. 
+[2018/01/01@21:56:28.883+0200] P-12428      T-3312  I          : (15743) Before Image Log Completion at Block 0 Offset 2598. 
+[2018/01/01@21:56:28.899+0200] P-12428      T-3312  I          : (334)   procopy get default SQL DBA session end. 
+
+                Mon Jan  1 21:56:49 2018
+[2018/01/01@21:56:49.171+0200] P-5892       T-720   I ABL      : (451)   Single-user session begin for margop on CON:. 
+[2018/01/01@21:56:49.174+0200] P-5892       T-720   I ABL      : (15321) Before Image Log Initialization at block 0  offset 2598. 
+[2018/01/01@21:56:49.184+0200] P-5892       T-720   I ABL      : (7129)  Usr 0 set name to margop. 
+[2018/01/01@23:12:37.203+0200] P-5892       T-720   I ABL      : (15109) At Database close the number of live transactions is 0. 
+[2018/01/01@23:12:37.204+0200] P-5892       T-720   I ABL      : (15743) Before Image Log Completion at Block 5 Offset 5654. 
+[2018/01/01@23:12:37.209+0200] P-5892       T-720   I ABL      : (334)   Single-user session end. 
