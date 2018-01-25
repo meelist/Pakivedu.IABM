@@ -1,0 +1,26 @@
+
+/*------------------------------------------------------------------------
+    File        : CreateCompany.p
+    Purpose     : 
+
+    Syntax      :
+
+    Description : 
+
+    Author(s)   : 
+    Created     : Sun Jan 14 15:31:48 EET 2018
+    Notes       :
+  ----------------------------------------------------------------------*/
+
+/* ***************************  Definitions  ************************** */
+
+BLOCK-LEVEL ON ERROR UNDO, THROW.
+
+/* ********************  Preprocessor Definitions  ******************** */
+
+
+/* ***************************  Main Block  *************************** */
+
+TRIGGER PROCEDURE FOR CREATE OF Company.
+ASSIGN Company.CompanyKey = NEXT-VALUE(companyId).
+MESSAGE "Company created with key " Company.CompanyKey " and with name " Company.Name.

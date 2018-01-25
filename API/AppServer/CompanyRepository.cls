@@ -34,10 +34,15 @@ CLASS CompanyRepository:
         CREATE addCompany.
         
         ASSIGN 
-            addCompany.Name       = companyName
-            addCompany.COMPANYKEY = GetNewId().
+            addCompany.Name = companyName.
+            ///addCompany.COMPANYKEY = GetNewId().
+            
+        CREATE Company.
+        ASSIGN Company.Name = companyName.
+            
+        //BUFFER-COPY Company TO addCompany.
         
-        BUFFER-COPY addCompany TO COMPANY.
+        //BUFFER-COPY addCompany TO COMPANY.
         
         successMessage = "Record created!".
         success = TRUE.
