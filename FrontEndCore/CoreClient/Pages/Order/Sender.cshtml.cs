@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using CoreClient.Extensions;
 using CoreClient.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -13,13 +14,12 @@ namespace CoreClient.Pages.Order
 
     public void OnGet()
     {
-      Sender = new Customer();
+      Sender = TempData.GetWithKeep<Customer>("Sender") ?? new Customer();
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
-      var senderJson = JsonConvert.SerializeObject(Sender);
-      TempData["Sender"] = senderJson;
+      TempData.Put("Sender", Sender);
       return RedirectToPage("/Order/Receiver");
     }
   }

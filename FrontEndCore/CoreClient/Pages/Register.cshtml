@@ -4,5 +4,39 @@
     ViewData["Title"] = "Register";
 }
 
-<h2>Register</h2>
+<div class="container">
+   <div asp-validation-summary="All"></div>
+   <form method="post" class="form-signin">
+      <h2 class="form-signin-heading">Sisesta saatja andmed</h2>
 
+      <label class="sr-only">Ettevõtte nimi</label>
+      <input asp-for="Customer.CompanyKey" class="form-control" placeholder="Ettevõtte nimi" autofocus="">
+
+      <label class="sr-only">Kliendi nimi</label>
+      <input asp-for="Customer.CustomerName" class="form-control" placeholder="Kliendi nimi">
+
+      <label class="sr-only">Kontakttelefon</label>
+      <input asp-for="Customer.Telephone" class="form-control" placeholder="Kontakttelefon">
+      
+      <label class="sr-only">E-mail</label>
+      <input asp-for="Customer.Email" class="form-control" placeholder="E-mail">
+
+      <label class="sr-only">Aadress</label>
+      <input asp-for="Customer.Address" class="form-control" placeholder="Aadress">
+
+      <label class="sr-only">Postiindeks</label>
+      <input asp-for="Customer.ZipCode" class="form-control" placeholder="Postiindeks">
+
+      <label class="sr-only">Riik</label>
+      <input asp-for="Customer.Country" class="form-control" placeholder="Riik">
+      
+      <label class="sr-only">Kasutajatunnus</label>
+      <input asp-for="Customer.UserName" class="form-control" placeholder="Kasutajatunnus">
+      
+      <label class="sr-only">Parool</label>
+      <input asp-for="Customer.Password" class="form-control" placeholder="Parool">
+
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Edasi</button>
+      <a asp-page="/Login" class="btn btn-lg btn-default btn-block">Katkesta</a>
+   </form>
+</div>
