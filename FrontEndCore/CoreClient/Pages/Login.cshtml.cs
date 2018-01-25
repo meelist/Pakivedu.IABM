@@ -30,7 +30,7 @@ namespace CoreClient.Pages
         dynamic json = new JObject();
         json.request = new JObject();
         json.request.userName = UserName;
-        json.request.passWord = Password;
+        json.request.password = Password;
 
         var content = new StringContent(json.ToString(), Encoding.UTF8, "application/json");
         var response = await client.PostAsync("APIService/rest/APIService/Auth", content);
@@ -42,6 +42,7 @@ namespace CoreClient.Pages
         var data = JsonConvert.DeserializeObject<ResponseBase>(respContent);
         if (!data.Response.success)
         {
+          ViewData["Error"] = data.Response.successMessage;
           return Page(); // TODO:display error from data
         }
       }

@@ -48,6 +48,7 @@ namespace CoreClient.Pages
         var data = JsonConvert.DeserializeObject<ResponseBase>(respContent);
         if (!data.Response.success)
         {
+          ViewData["Error"] = data.Response.successMessage;
           return Page(); // TODO:display error from data
         }
       }

@@ -15,9 +15,10 @@
       </div>
       <div>
          <label class="sr-only">Parool</label>
-         <input asp-for="Password" class="form-control" placeholder="Parool" />
+         <input asp-for="Password" class="form-control" placeholder="Parool" type="password" />
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Logi sisse</button>
       <a asp-page="/Register" class="btn btn-lg btn-default btn-block">Loo kasutaja</a>
    </form>
+   <div style="color: red; margin: 0 auto; width: 300px;">@ViewData["Error"]</div>
 </div>

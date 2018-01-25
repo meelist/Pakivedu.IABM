@@ -1,13 +1,13 @@
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false"). 
- /*------------------------------------------------------------------------
-    File        : CustomerRepository
-    Purpose     : 
-    Syntax      : 
-    Description : 
-    Author(s)   : margop
-    Created     : Wed Jan 17 00:25:23 EET 2018
-    Notes       : 
-  ----------------------------------------------------------------------*/
+/*------------------------------------------------------------------------
+   File        : CustomerRepository
+   Purpose     : 
+   Syntax      : 
+   Description : 
+   Author(s)   : margop
+   Created     : Wed Jan 17 00:25:23 EET 2018
+   Notes       : 
+ ----------------------------------------------------------------------*/
 USING Progress.Lang.*.
 USING API.*.
 
@@ -30,9 +30,9 @@ CLASS CustomerRepository:
 
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
     METHOD PUBLIC VOID CreateCustomer(  INPUT customerName AS CHARACTER, INPUT telephone AS CHARACTER, INPUT address AS CHARACTER,
-                                        INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
-                                        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, INPUT userName AS CHARACTER, 
-                                        OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
+        INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
+        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, INPUT userName AS CHARACTER, 
+        OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
         CREATE addCustomer.
         // kliendi nime, e-mail, kasutajanime ja parrooli, et 
@@ -40,23 +40,29 @@ CLASS CustomerRepository:
         DO:
             successMessage = "Palun sisesta oma nimi, kasutajanimi, email ja parool".
             success = FALSE.
+            DELETE addCustomer.
             RETURN.
         END.
         
         // find customer username aga ära lase andmebaasi lukku
-        FIND Pakivedu.Customer WHERE Pakivedu.Customer.USERNAME = userName NO-LOCK NO-ERROR.
+        FIND Pakivedu.Customer WHERE Pakivedu.Customer.USERNAME EQ userName NO-LOCK NO-ERROR.
         IF AVAILABLE Pakivedu.Customer THEN 
-            DO:
-                successMessage = "Username " + STRING(userName) + " exists in database found! Please enter new one!".
-                success = FALSE.
-            END.
-        ELSE DO:
+        DO:
+            successMessage = "Username " + STRING(userName) + " exists in database found! Please enter new one!".
+            success = FALSE.
+            DELETE addCustomer.
+            RETURN.
+        END.
+        ELSE 
+        DO:
             // find company from the system
-            FIND Pakivedu.Company WHERE Pakivedu.Company.CompanyKey = companyKey NO-ERROR.
+            FIND Pakivedu.Company WHERE Pakivedu.Company.CompanyKey EQ companyKey NO-LOCK NO-ERROR.
             IF NOT AVAILABLE Pakivedu.Company THEN 
             DO:
                 successMessage = "Company with Key " + STRING(companyKey) + " was not found!".
                 success = FALSE.
+                DELETE addCustomer.
+                RETURN.
             END.
             ELSE
             DO:

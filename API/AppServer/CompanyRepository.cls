@@ -33,7 +33,7 @@ CLASS CompanyRepository:
         
         ASSIGN 
             addCompany.Name       = companyName
-            addCompany.COMPANYKEY = GetNewId().
+            addCompany.COMPANYKEY = NEXT-VALUE(CompanyNum).
         
         BUFFER-COPY addCompany TO COMPANY.
         

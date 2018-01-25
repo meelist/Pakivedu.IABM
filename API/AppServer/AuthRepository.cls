@@ -19,7 +19,7 @@ CLASS AuthRepository:
     METHOD PUBLIC VOID Login( INPUT userName AS CHARACTER, INPUT password AS CHARACTER,
                               OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
-        FIND Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.UserName = userName AND Pakivedu.CUSTOMER.Password = Password NO-LOCK NO-ERROR.
+        FIND Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.UserName EQ userName AND Pakivedu.CUSTOMER.Password EQ Password NO-LOCK NO-ERROR.
         IF NOT AVAILABLE Pakivedu.CUSTOMER THEN
         DO:
             successMessage = "Username or password was wrong!".
