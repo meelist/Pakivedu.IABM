@@ -1,24 +1,25 @@
-@openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
-/*------------------------------------------------------------------------
-   File        : CustomerRepository
-   Purpose     : 
-   Syntax      : 
-   Description : 
-   Author(s)   : Meelis
-   Created     : Mon Nov 13 22:21:09 EET 2017
-   Notes       : 
- ----------------------------------------------------------------------*/
-
+@openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false"). 
+ /*------------------------------------------------------------------------
+    File        : CustomerRepository
+    Purpose     : 
+    Syntax      : 
+    Description : 
+    Author(s)   : margop
+    Created     : Wed Jan 17 00:25:23 EET 2018
+    Notes       : 
+  ----------------------------------------------------------------------*/
 USING Progress.Lang.*.
 USING API.*.
 
+// guarantees that all unhandled errors in affected blocks will be propagated up to the caller
 BLOCK-LEVEL ON ERROR UNDO, THROW.
+
 
 CLASS CustomerRepository: 
     
-    DEFINE TEMP-TABLE addCustomer LIKE Customer.
-    DEFINE TEMP-TABLE getCustomer LIKE Customer.
-    DEFINE TEMP-TABLE updateCustomer LIKE Customer.
+    DEFINE TEMP-TABLE addCustomer LIKE Pakivedu.Customer.
+    DEFINE TEMP-TABLE getCustomer LIKE Pakivedu.Customer.
+    DEFINE TEMP-TABLE updateCustomer LIKE Pakivedu.Customer.
     
     DEFINE DATASET customerSet FOR updateCustomer.
 
@@ -28,36 +29,54 @@ CLASS CustomerRepository:
     ------------------------------------------------------------------------------*/
 
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
-    METHOD PUBLIC VOID CreateCustomer( INPUT customerName AS CHARACTER, INPUT telephone AS CHARACTER, INPUT address AS CHARACTER,
-        INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
-        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, INPUT userName AS CHARACTER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
+    METHOD PUBLIC VOID CreateCustomer(  INPUT customerName AS CHARACTER, INPUT telephone AS CHARACTER, INPUT address AS CHARACTER,
+                                        INPUT email AS CHARACTER, INPUT password AS CHARACTER, INPUT zipcode AS CHARACTER, 
+                                        INPUT country AS CHARACTER, INPUT companyKey AS INTEGER, INPUT userName AS CHARACTER, 
+                                        OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
         CREATE addCustomer.
-        
-        FIND Company WHERE Company.CompanyKey = companyKey NO-ERROR.
-        IF NOT AVAILABLE Company THEN 
+        // kliendi nime, e-mail, kasutajanime ja parrooli, et 
+        IF customerName = ? OR email = ? OR userName = ? OR password = ? THEN
         DO:
-            successMessage = "Company with Key " + STRING(companyKey) + " was not found!".
+            successMessage = "Palun sisesta oma nimi, kasutajanimi, email ja parool".
             success = FALSE.
+            RETURN.
         END.
-        ELSE
-        DO:
-            ASSIGN
-                addCustomer.FULLNAME    = customerName
-                addCustomer.TELEPHONE   = telephone
-                addCustomer.ADDRESS     = address
-                addCustomer.EMAIL       = email
-                addCustomer.PASSWORD    = password
-                addCustomer.ZIPCODE     = zipcode
-                addCustomer.COUNTRY     = country
-                addCustomer.COMPANYKEY  = companyKey
-                addCustomer.USERNAME    = userName
-                addCustomer.CUSTOMERKEY = GetNewId().
         
-            BUFFER-COPY addCustomer TO CUSTOMER.
-        
-            successMessage = "Record created!".
-            success = TRUE.
+        // find customer username aga ära lase andmebaasi lukku
+        FIND Pakivedu.Customer WHERE Pakivedu.Customer.USERNAME = userName NO-LOCK NO-ERROR.
+        IF AVAILABLE Pakivedu.Customer THEN 
+            DO:
+                successMessage = "Username " + STRING(userName) + " exists in database found! Please enter new one!".
+                success = FALSE.
+            END.
+        ELSE DO:
+            // find company from the system
+            FIND Pakivedu.Company WHERE Pakivedu.Company.CompanyKey = companyKey NO-ERROR.
+            IF NOT AVAILABLE Pakivedu.Company THEN 
+            DO:
+                successMessage = "Company with Key " + STRING(companyKey) + " was not found!".
+                success = FALSE.
+            END.
+            ELSE
+            DO:
+                ASSIGN
+                    addCustomer.FULLNAME    = customerName
+                    addCustomer.TELEPHONE   = telephone
+                    addCustomer.ADDRESS     = address
+                    addCustomer.EMAIL       = email
+                    addCustomer.PASSWORD    = password
+                    addCustomer.ZIPCODE     = zipcode
+                    addCustomer.COUNTRY     = country
+                    addCustomer.COMPANYKEY  = companyKey
+                    addCustomer.USERNAME    = userName
+                    addCustomer.CUSTOMERKEY = NEXT-VALUE (CustomerNum).
+            
+                BUFFER-COPY addCustomer TO Pakivedu.CUSTOMER.
+            
+                successMessage = "Record created!".
+                success = TRUE.
+            END.
         END.
         
     END METHOD. 
@@ -70,11 +89,11 @@ CLASS CustomerRepository:
     @openapi.openedge.export(type="REST", useReturnValue="false", writeDataSetBeforeImage="false").
     METHOD PUBLIC VOID DeleteCustomer( INPUT customerId AS INTEGER, OUTPUT successMessage AS CHARACTER, OUTPUT success AS LOGICAL ):
         
-        FIND FIRST CUSTOMER WHERE CUSTOMER.CUSTOMERKEY EQ customerId EXCLUSIVE-LOCK NO-ERROR.
+        FIND FIRST Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.CUSTOMERKEY EQ customerId EXCLUSIVE-LOCK NO-ERROR.
         
-        IF AVAILABLE CUSTOMER THEN
+        IF AVAILABLE Pakivedu.CUSTOMER THEN
         DO:
-            DELETE CUSTOMER.
+            DELETE Pakivedu.CUSTOMER.
             successMessage = "Record deleted!".
             success = TRUE.            
         END.
@@ -96,12 +115,12 @@ CLASS CustomerRepository:
         
         EMPTY TEMP-TABLE getCustomer.
         
-        FIND FIRST CUSTOMER WHERE CUSTOMER.CUSTOMERKEY EQ customerId NO-LOCK NO-ERROR.
+        FIND FIRST Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.CUSTOMERKEY EQ customerId NO-LOCK NO-ERROR.
         
-        IF AVAILABLE CUSTOMER THEN
+        IF AVAILABLE Pakivedu.CUSTOMER THEN
         DO:
             CREATE getCustomer.
-            BUFFER-COPY CUSTOMER TO getCustomer.
+            BUFFER-COPY Pakivedu.CUSTOMER TO getCustomer.
             
             successMessage = "Record found!".
             success = TRUE.
@@ -124,9 +143,9 @@ CLASS CustomerRepository:
         
         EMPTY TEMP-TABLE getCustomer.
         
-        FOR EACH CUSTOMER NO-LOCK:
+        FOR EACH Pakivedu.CUSTOMER NO-LOCK:
             CREATE getCustomer.
-            BUFFER-COPY CUSTOMER TO getCustomer.
+            BUFFER-COPY Pakivedu.CUSTOMER TO getCustomer.
         END.
         
         successMessage = "Records fetched successfully!".
@@ -143,17 +162,17 @@ CLASS CustomerRepository:
         
         DEFINE VARIABLE customerId AS INTEGER INIT 0.
         
-        FIND LAST CUSTOMER NO-LOCK NO-ERROR.
+        FIND LAST Pakivedu.CUSTOMER NO-LOCK NO-ERROR.
         
-        IF AVAILABLE CUSTOMER THEN
+        IF AVAILABLE Pakivedu.CUSTOMER THEN
         DO:
-            customerId = CUSTOMER.CUSTOMERKEY.
+            customerId = Pakivedu.CUSTOMER.CUSTOMERKEY.
         END.
         
         REPEAT:
-            FIND FIRST CUSTOMER WHERE CUSTOMER.CUSTOMERKEY = customerId + 1 NO-LOCK NO-ERROR.
+            FIND FIRST Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.CUSTOMERKEY = customerId + 1 NO-LOCK NO-ERROR.
             customerId = customerId + 1.
-            IF NOT AVAILABLE CUSTOMER THEN LEAVE.  
+            IF NOT AVAILABLE Pakivedu.CUSTOMER THEN LEAVE.  
         END.
         
         RETURN customerId.
@@ -170,14 +189,14 @@ CLASS CustomerRepository:
         
         FIND FIRST updateCustomer.
         
-        FIND FIRST CUSTOMER WHERE CUSTOMER.CUSTOMERKEY EQ customerId EXCLUSIVE-LOCK NO-ERROR.
+        FIND FIRST Pakivedu.CUSTOMER WHERE Pakivedu.CUSTOMER.CUSTOMERKEY EQ customerId EXCLUSIVE-LOCK NO-ERROR.
         
         ASSIGN
             updateCustomer.CUSTOMERKEY = customerId.
         
-        IF AVAILABLE CUSTOMER THEN
+        IF AVAILABLE Pakivedu.CUSTOMER THEN
         DO:
-            BUFFER-COPY updateCustomer TO CUSTOMER.
+            BUFFER-COPY updateCustomer TO Pakivedu.CUSTOMER.
             successMessage = "Record updated!".
             success = TRUE.
         END.

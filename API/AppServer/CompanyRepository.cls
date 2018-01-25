@@ -1,15 +1,13 @@
+  /*------------------------------------------------------------------------
+    File        : CompanyRepository
+    Purpose     : 
+    Syntax      : 
+    Description : 
+    Author(s)   : margop
+    Created     : Wed Jan 17 00:23:32 EET 2018
+    Notes       : 
+  ----------------------------------------------------------------------*/
 @openapi.openedge.export FILE(type="REST", executionMode="singleton", useReturnValue="false", writeDataSetBeforeImage="false").
- 
-/*------------------------------------------------------------------------
-   File        : Company
-   Purpose     : 
-   Syntax      : 
-   Description : 
-   Author(s)   : Meelis
-   Created     : Fri Nov 10 15:45:23 EET 2017
-   Notes       : 
- ----------------------------------------------------------------------*/
-
 USING Progress.Lang.*.
 
 BLOCK-LEVEL ON ERROR UNDO, THROW.
