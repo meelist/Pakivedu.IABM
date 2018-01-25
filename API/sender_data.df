@@ -1,0 +1,67 @@
+ADD TABLE "SenderData"
+  AREA "Schema Area"
+  DUMP-NAME "senderkey"
+
+ADD FIELD "SenderKey" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "Company" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 3
+  MAX-WIDTH 20
+  ORDER 20
+
+ADD FIELD "ContactPerson" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 4
+  MAX-WIDTH 255
+  ORDER 30
+
+ADD FIELD "Telephone" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 5
+  MAX-WIDTH 20
+  ORDER 40
+
+ADD FIELD "Address" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 6
+  MAX-WIDTH 255
+  ORDER 50
+
+ADD FIELD "ZipCode" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "Country" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 8
+  MAX-WIDTH 8
+  ORDER 70
+
+ADD FIELD "CustomerKey" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 80
+  MANDATORY  
+
+ADD INDEX "CustomerKeyIndex" ON "SenderData" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "CustomerKey" ASCENDING 
+  INDEX-FIELD "SenderKey" ASCENDING 

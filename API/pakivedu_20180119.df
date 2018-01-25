@@ -1,0 +1,422 @@
+ADD SEQUENCE "CustomerSequence"
+  INITIAL 0
+  INCREMENT 1
+  CYCLE-ON-LIMIT no
+
+ADD TABLE "Company"
+  AREA "Schema Area"
+  DUMP-NAME "company"
+
+ADD FIELD "CompanyKey" OF "Company" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "Name" OF "Company" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 3
+  MAX-WIDTH 16
+  ORDER 20
+
+ADD INDEX "CompanyKeyIndex" ON "Company" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "CompanyKey" ASCENDING 
+
+ADD CONSTRAINT "_PKC_Company-CompanyKeyIndex-idx" ON "Company" 
+  PRIMARY
+  ACTIVE
+  CONSTRAINT-INDEX "CompanyKeyIndex"
+
+ADD TABLE "Customer"
+  AREA "Schema Area"
+  DUMP-NAME "customer"
+
+ADD FIELD "CustomerKey" OF "Customer" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "Name" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 3
+  MAX-WIDTH 16
+  ORDER 20
+
+ADD FIELD "Telephone" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 4
+  MAX-WIDTH 16
+  ORDER 30
+
+ADD FIELD "Address" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 5
+  MAX-WIDTH 16
+  ORDER 40
+
+ADD FIELD "Email" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 6
+  MAX-WIDTH 16
+  ORDER 50
+
+ADD FIELD "Password" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 7
+  MAX-WIDTH 16
+  ORDER 60
+
+ADD FIELD "ZipCode" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 8
+  MAX-WIDTH 16
+  ORDER 70
+
+ADD FIELD "Country" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 9
+  MAX-WIDTH 16
+  ORDER 80
+
+ADD FIELD "CompanyKey" OF "Customer" AS integer 
+  FORMAT "->,>>>,>>9"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 4
+  ORDER 90
+
+ADD FIELD "Fullname" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 12
+  MAX-WIDTH 16
+  ORDER 100
+
+ADD FIELD "UserName" OF "Customer" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 13
+  MAX-WIDTH 16
+  ORDER 110
+
+ADD INDEX "CustomerKeyIndex" ON "Customer" 
+  AREA "Schema Area"
+  UNIQUE
+  PRIMARY
+  INDEX-FIELD "CustomerKey" ASCENDING 
+
+ADD CONSTRAINT "_PKC_Customer-CustomerKeyIndex-idx" ON "Customer" 
+  PRIMARY
+  ACTIVE
+  CONSTRAINT-INDEX "CustomerKeyIndex"
+
+ADD TABLE "ReceiverData"
+  AREA "Schema Area"
+  DUMP-NAME "receiverdata"
+
+ADD FIELD "ReceiverKey" OF "ReceiverData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "Company" OF "ReceiverData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 3
+  MAX-WIDTH 20
+  ORDER 20
+
+ADD FIELD "ContactPerson" OF "ReceiverData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 4
+  MAX-WIDTH 20
+  ORDER 30
+
+ADD FIELD "Telephone" OF "ReceiverData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 5
+  MAX-WIDTH 4
+  ORDER 40
+
+ADD FIELD "Address" OF "ReceiverData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 6
+  MAX-WIDTH 255
+  ORDER 50
+
+ADD FIELD "ZipCode" OF "ReceiverData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "Country" OF "ReceiverData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 8
+  MAX-WIDTH 8
+  ORDER 70
+
+ADD FIELD "CustomerKey" OF "ReceiverData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+  MANDATORY
+
+ADD INDEX "ReceiverKeyIndex" ON "ReceiverData" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "ReceiverKey" ASCENDING 
+  INDEX-FIELD "CustomerKey" ASCENDING 
+
+ADD TABLE "SenderData"
+  AREA "Schema Area"
+  DUMP-NAME "senderkey"
+
+ADD FIELD "SenderKey" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "Company" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 3
+  MAX-WIDTH 20
+  ORDER 20
+
+ADD FIELD "ContactPerson" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 4
+  MAX-WIDTH 255
+  ORDER 30
+
+ADD FIELD "Telephone" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 5
+  MAX-WIDTH 20
+  ORDER 40
+
+ADD FIELD "Address" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 6
+  MAX-WIDTH 255
+  ORDER 50
+
+ADD FIELD "ZipCode" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "Country" OF "SenderData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 8
+  MAX-WIDTH 8
+  ORDER 70
+
+ADD FIELD "CustomerKey" OF "SenderData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 80
+  MANDATORY  
+
+ADD INDEX "CustomerKeyIndex" ON "SenderData" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "CustomerKey" ASCENDING 
+  INDEX-FIELD "SenderKey" ASCENDING 
+
+ADD TABLE "Shipment"
+  AREA "Schema Area"
+  DUMP-NAME "shipment"
+
+ADD FIELD "CustomerKey" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+  MANDATORY
+
+ADD FIELD "ShipmentDate" OF "Shipment" AS date 
+  FORMAT "99/99/99"
+  INITIAL "?"
+  POSITION 3
+  MAX-WIDTH 4
+  ORDER 20
+
+ADD FIELD "ShipmentKey" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+  MANDATORY
+
+ADD FIELD "Product" OF "Shipment" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 5
+  MAX-WIDTH 160
+  ORDER 40
+
+ADD FIELD "UnitCount" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 6
+  MAX-WIDTH 4
+  ORDER 50
+
+ADD FIELD "TotalWeight" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 7
+  MAX-WIDTH 4
+  ORDER 60
+
+ADD FIELD "Addinfo" OF "Shipment" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 8
+  MAX-WIDTH 255
+  ORDER 70
+
+ADD FIELD "SenderKey" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 9
+  MAX-WIDTH 4
+  ORDER 80
+  MANDATORY
+
+ADD FIELD "ReceiverKey" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 10
+  MAX-WIDTH 4
+  ORDER 90
+  MANDATORY
+
+ADD FIELD "PriceEUR" OF "Shipment" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 11
+  MAX-WIDTH 4
+  ORDER 100
+
+ADD INDEX "CustomerKeyIndex" ON "Shipment" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "ShipmentDate" ASCENDING 
+  INDEX-FIELD "CustomerKey" ASCENDING 
+
+ADD INDEX "ReceiverKeyIndex" ON "Shipment" 
+  AREA "Schema Area"
+  INDEX-FIELD "ReceiverKey" ASCENDING 
+
+ADD INDEX "SenderKeyIndex" ON "Shipment" 
+  AREA "Schema Area"
+  INDEX-FIELD "SenderKey" ASCENDING 
+
+ADD INDEX "ShipmentKeyIndex" ON "Shipment" 
+  AREA "Schema Area"
+  INDEX-FIELD "ShipmentKey" ASCENDING 
+
+ADD CONSTRAINT "_PKC_Shipment-ReceiverKeyIndex-idx" ON "Shipment" 
+  PRIMARY
+  ACTIVE
+  CONSTRAINT-INDEX "ReceiverKeyIndex"
+
+ADD TABLE "StatusData"
+  AREA "Schema Area"
+  DUMP-NAME "statusdata"
+
+ADD FIELD "ScanKey" OF "StatusData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 2
+  MAX-WIDTH 4
+  ORDER 10
+
+ADD FIELD "ShipmentKey" OF "StatusData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 3
+  MAX-WIDTH 4
+  ORDER 20
+
+ADD FIELD "ScanType" OF "StatusData" AS integer 
+  FORMAT "->>,>>9"
+  INITIAL "0"
+  POSITION 4
+  MAX-WIDTH 4
+  ORDER 30
+
+ADD FIELD "ScanDateTime" OF "StatusData" AS datetime 
+  FORMAT "99/99/99 HH:MM:SS"
+  INITIAL "?"
+  POSITION 5
+  MAX-WIDTH 8
+  ORDER 40
+
+ADD FIELD "Location" OF "StatusData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 6
+  MAX-WIDTH 20
+  ORDER 50
+
+ADD FIELD "Employee" OF "StatusData" AS character 
+  FORMAT "x(8)"
+  INITIAL ""
+  POSITION 7
+  MAX-WIDTH 250
+  ORDER 60
+
+ADD INDEX "ShipmentKeyIndex" ON "StatusData" 
+  AREA "Schema Area"
+  PRIMARY
+  INDEX-FIELD "ScanKey" ASCENDING 
+  INDEX-FIELD "ShipmentKey" ASCENDING 
+
+.
+PSC
+cpstream=ISO8859-1
+.
+0000008010
